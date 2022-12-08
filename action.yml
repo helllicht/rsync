@@ -52,5 +52,5 @@ runs:
 
         echo "Done."
       shell: bash
-    - run: deploy.sh
+    - run: ${{ github.action_path }}/deploy.sh
       shell: bash
