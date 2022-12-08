@@ -50,9 +50,6 @@ else
   exit 1
 fi
 
-echo 'done'
-exit 0
-
 # check if DRY_RUN is set
 if [ -z "$DRY_RUN" ]; then
   echo ""

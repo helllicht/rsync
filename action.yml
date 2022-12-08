@@ -53,7 +53,7 @@ runs:
           echo "REMOTE_PASSWORD=${{ inputs.remote_password }}" >> $GITHUB_ENV
         fi
    
-        if [ ${{ inputs.private_key }} != ''  ]; then
+        if [ ${{ inputs.private_key }} != '' ]; then
           echo "PRIVATE_KEY=${{ inputs.private_key }}" >> $GITHUB_ENV
         fi
 
