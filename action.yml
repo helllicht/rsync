@@ -50,12 +50,10 @@ runs:
         echo "EXCLUDE_FILE=${{ inputs.exclude_file }}" >> $GITHUB_ENV
 
         if [ ${{ inputs.remote_password }} != '' ]; then
-          echo 'setting password env'
           echo "REMOTE_PASSWORD=${{ inputs.remote_password }}" >> $GITHUB_ENV
         fi
    
-        if [ ${{ inputs.remote_password }} != ''  ]; then
-          echo 'setting private key env'
+        if [ ${{ inputs.private_key }} != ''  ]; then
           echo "PRIVATE_KEY=${{ inputs.private_key }}" >> $GITHUB_ENV
         fi
 
