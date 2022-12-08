@@ -36,16 +36,21 @@ runs:
   using: "composite"
   steps:
     - name: Setting vars
-      run: ${{ github.action_path }}/deploy.sh
+      run: |
+        echo "Setting up vars..."
+
+        echo "REMOTE_SERVER=${{ inputs.remote_server }}" >> $GITHUB_ENV
+        echo "REMOTE_PORT=${{ inputs.remote_port }}" >> $GITHUB_ENV
+        echo "REMOTE_USER=${{ inputs.remote_user }}" >> $GITHUB_ENV
+        echo "LOCAL_DIRECTORY=${{ inputs.local_directory }}" >> $GITHUB_ENV
+        echo "REMOTE_DIRECTORY=${{ inputs.remote_directory }}" >> $GITHUB_ENV
+        echo "DRY_RUN=${{ inputs.dry_run }}" >> $GITHUB_ENV
+        echo "DELETE_FROM_REMOTE_DIRECTORY=${{ inputs.delete_from_remote_directory }}" >> $GITHUB_ENV
+        echo "EXCLUDE_FILE=${{ inputs.exclude_file }}" >> $GITHUB_ENV
+        echo "REMOTE_PASSWORD=${{ inputs.remote_password }}" >> $GITHUB_ENV
+        echo "PRIVATE_KEY=${{ inputs.private_key }}" >> $GITHUB_ENV
+
+        echo "Done."
       shell: bash
-      env:
-        REMOTE_SERVER: ${{ inputs.remote_server }}
-        REMOTE_PORT: ${{ inputs.remote_port }}
-        REMOTE_USER: ${{ inputs.remote_user }}
-        LOCAL_DIRECTORY: ${{ inputs.local_directory }}
-        REMOTE_DIRECTORY: ${{ inputs.remote_directory }}
-        DRY_RUN: ${{ inputs.dry_run }}
-        DELETE_FROM_REMOTE_DIRECTORY: ${{ inputs.delete_from_remote_directory }}
-        EXCLUDE_FILE: ${{ inputs.exclude_file }}
-        REMOTE_PASSWORD: ${{ inputs.remote_password }}
-        PRIVATE_KEY: ${{ inputs.private_key }}
+    - run: ${{ github.action_path }}/entrypoint.sh
+      shell: bash
