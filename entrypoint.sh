@@ -45,6 +45,7 @@ elif [ -z ${PRIVATE_KEY+.} ]; then
   echo ""
   AUTHORIZATION_METHOD=PASSWORD
 else
+  echo "Found ssh_key and password."
   echo "Please either set remote_password OR private_key."
   exit 1
 fi
