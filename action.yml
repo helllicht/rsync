@@ -36,21 +36,16 @@ runs:
   using: "composite"
   steps:
     - name: Setting vars
-      run: |
-        echo "Setting up vars..."
-
-        export REMOTE_SERVER=${{ inputs.remote_server }}
-        export REMOTE_PORT=${{ inputs.remote_port }}
-        export REMOTE_USER=${{ inputs.remote_user }}
-        export LOCAL_DIRECTORY=${{ inputs.local_directory }}
-        export REMOTE_DIRECTORY=${{ inputs.remote_directory }}
-        export DRY_RUN=${{ inputs.dry_run }}
-        export DELETE_FROM_REMOTE_DIRECTORY=${{ inputs.delete_from_remote_directory }}
-        export EXCLUDE_FILE=${{ inputs.exclude_file }}
-        export REMOTE_PASSWORD=${{ inputs.remote_password }}
-        export PRIVATE_KEY=${{ inputs.private_key }}
-
-        echo "Done."
+      run: ${{ github.action_path }}/deploy.sh
       shell: bash
-    - run: ${{ github.action_path }}/deploy.sh
-      shell: bash
+      env:
+        REMOTE_SERVER: ${{ inputs.remote_server }}
+        REMOTE_PORT: ${{ inputs.remote_port }}
+        REMOTE_USER: ${{ inputs.remote_user }}
+        LOCAL_DIRECTORY: ${{ inputs.local_directory }}
+        REMOTE_DIRECTORY: ${{ inputs.remote_directory }}
+        DRY_RUN: ${{ inputs.dry_run }}
+        DELETE_FROM_REMOTE_DIRECTORY: ${{ inputs.delete_from_remote_directory }}
+        EXCLUDE_FILE: ${{ inputs.exclude_file }}
+        REMOTE_PASSWORD: ${{ inputs.remote_password }}
+        PRIVATE_KEY: ${{ inputs.private_key }}
