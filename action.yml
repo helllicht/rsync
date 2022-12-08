@@ -1,0 +1,56 @@
+name: 'helllicht/rsync'
+description: 'helllicht rsync action'
+inputs:
+  remote_server:  
+    description: 'Host to deploy on'
+    required: true
+  remote_port: 
+    description: 'The port to use for connection'
+    required: false
+  remote_user:
+    description: 'The user to use for connection'
+    required: true
+  local_directory: 
+    description: 'The local directory to be synced'
+    required: true
+  remote_directory: 
+    description: 'The target directory on the host system'
+    required: true
+  dry_run:
+    description: 'Do you want to perform a dry run?'
+    required: true
+  delete_from_remote_directory:
+    description: 'Do you want to delete files from remote_dir, that are not in the local_dir'
+    required: false
+  exclude_file:
+    description: 'path to a syncignore file'
+    required: false
+  remote_password:
+    description: 'Password for the host system. Don`t set if authorizing by ssh key'
+    required: false
+  private_key:
+    description: 'The matching private key to the public key on the host system. Don`t set if authorizing by password. When set, must equal the entire private key file - including begin-line and end-line'
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setting vars
+      run: |
+        echo "Setting up vars..."
+
+        export REMOTE_SERVER=${{ inputs.remote_server }}
+        export REMOTE_PORT=${{ inputs.remote_port }}
+        export REMOTE_USER=${{ inputs.remote_user }}
+        export LOCAL_DIRECTORY=${{ inputs.local_directory }}
+        export REMOTE_DIRECTORY=${{ inputs.remote_directory }}
+        export DRY_RUN=${{ inputs.dry_run }}
+        export DELETE_FROM_REMOTE_DIRECTORY=${{ inputs.delete_from_remote_directory }}
+        export EXCLUDE_FILE=${{ inputs.exclude_file }}
+        export REMOTE_PASSWORD=${{ inputs.remote_password }}
+        export PRIVATE_KEY=${{ inputs.private_key }}
+
+        echo "Done."
+      shell: bash
+    - run: deploy.sh
+      shell: bash
