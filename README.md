@@ -25,15 +25,13 @@ The step to sync data in your `.github/workflows/workflow.yml` could look like t
 ## Parameters
 ### Required parameters
 
-`remote_server` Host to deploy on
-
-`remote_user` The user to use for connection
-
-`local_directory` The local directory to be synced
-
-`remote_directory` The target directory on the host system
-
-`dry_run` Perform a dry run instead of actually syncing files
+| Parameter | Description
+| :--- | :--- |
+| `remote_server` | Host to deploy on
+| `remote_user` | The user to use for connection
+| `local_directory` | The local directory to be synced
+| `remote_directory` | The target directory on the host system
+| `dry_run` | Perform a dry run instead of actually syncing files
 
 ---
 
@@ -48,7 +46,7 @@ The step to sync data in your `.github/workflows/workflow.yml` could look like t
 
 ### Optional parameters
 | Parameter | Description | Default
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | `remote_port` | The port to use for connection | `22`
 | `delete_from_remote_directory` | Delete files from remote_dir, that are not in the local_dir | `false`
 | `exclude_file` | Path to a syncignore file (further information below) | _no exclude file_
