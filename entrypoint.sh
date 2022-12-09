@@ -112,13 +112,13 @@ fi
 
 # set if exclude file is used
 if [[ -n "$EXCLUDE_FILE" ]]; then
-  echo "⏭ Using exclude file: $EXCLUDE_FILE"
+  echo "⏭  Using exclude file: $EXCLUDE_FILE"
   echo "Exclude file contains:"
   cat $EXCLUDE_FILE
   echo ""
   echo ""
 else
-  echo "⏭ No exclude file"
+  echo "⏭  No exclude file"
   echo ""
   EXCLUDE_FILE=
 fi
