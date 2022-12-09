@@ -5,22 +5,22 @@ inputs:
     description: 'Host to deploy on'
     required: true
   remote_port: 
-    description: 'The port to use for connection'
+    description: 'Port to use for connection'
     required: false
   remote_user:
-    description: 'The user to use for connection'
+    description: 'User to use for connection'
     required: true
   local_directory: 
-    description: 'The local directory to be synced'
+    description: 'Local directory to be synced'
     required: true
   remote_directory: 
-    description: 'The target directory on the host system'
+    description: 'Target directory on the host system'
     required: true
   dry_run:
-    description: 'Do you want to perform a dry run?'
+    description: 'Perform a dry run instead of actually syncing files'
     required: true
   delete_from_remote_directory:
-    description: 'Do you want to delete files from remote_dir, that are not in the local_dir'
+    description: 'Delete files from remote_dir, that are not in the local_dir'
     required: false
   exclude_file:
     description: 'path to a syncignore file'
@@ -29,7 +29,7 @@ inputs:
     description: 'Password for the host system. Don`t set if authorizing by ssh key'
     required: false
   private_key:
-    description: 'The matching private key to the public key on the host system. Don`t set if authorizing by password. When set, must equal the entire private key file - including begin-line and end-line'
+    description: 'Private key to the public key on the host system. Don`t set if authorizing by password. When set, must equal the entire private key file - including begin-line and end-line'
     required: false
 
 runs:

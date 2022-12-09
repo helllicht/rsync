@@ -32,26 +32,26 @@ The step to sync data in your `.github/workflows/workflow.yml` could look like t
 | Parameter | Description
 | :--- | :--- |
 | `remote_server` | Host to deploy on
-| `remote_user` | The user to use for connection
-| `local_directory` | The local directory to be synced
-| `remote_directory` | The target directory on the host system
+| `remote_user` | User to use for connection
+| `local_directory` | Local directory to be synced
+| `remote_directory` | Target directory on the host system
 | `dry_run` | Perform a dry run instead of actually syncing files
 
 ---
 
 ### Authorization parameters
-**Either set `remote_passsword` OR `private_key`. If none or both are set, job will fail.**
+**Either set `remote_password` OR `private_key`. If none or both are set, job will fail.**
 
 `remote_password` Password for the host system. Don't set if authorizing by ssh-key
 
-`private_key` The matching private key to the public key on the host system. Don't set if authorizing by password. When set, must include the entire private key file - including begin-line and end-line
+`private_key` Private key to an authorized public key on the host system. Don't set if authorizing by password. When set, must include the entire private key file - including begin-line and end-line
 
 ---
 
 ### Optional parameters
 | Parameter | Description | Default
 | :--- | :--- | :--- |
-| `remote_port` | The port to use for connection | `22`
+| `remote_port` | Port to use for connection | `22`
 | `delete_from_remote_directory` | Delete files from remote_dir, that are not in the local_dir | `false`
 | `exclude_file` | Path to a syncignore file (further information below) | _no exclude file_
 
