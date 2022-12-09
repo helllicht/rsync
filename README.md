@@ -25,15 +25,15 @@ The step to sync data in your ```.github/workflows/workflow.yml``` could look li
 ## parameters
 ### required parameters
 
-```remote_server``` 'Host to deploy on
+```remote_server``` Host to deploy on
 
-```remote_user``` 'The user to use for connection
+```remote_user``` The user to use for connection
 
-```local_directory``` 'The local directory to be synced
+```local_directory``` The local directory to be synced
 
-```remote_directory``` 'The target directory on the host system
+```remote_directory``` The target directory on the host system
 
-```dry_run``` 'Do you want to perform a dry run?
+```dry_run``` Do you want to perform a dry run?
 
 ---
 ### authorization parameters
