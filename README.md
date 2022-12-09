@@ -1,8 +1,12 @@
 # helllicht/rsync
 
+## Introduction
+This action uses rsync to deploy code on a remote system via ssh. 
+Authorization can be done via password or ssh-key
+
 ## Requirements
 The host system needs to allow ssh connections and support rsync.
-If you want to authorize by ssh key, make sure that the key is **not** protected by a passphrase since `helllicht/rsync` does not support passphrase protected ssh-keys.
+If you want to authorize by ssh-key, make sure that the key is **not** protected by a passphrase since `helllicht/rsync` does not support passphrase protected ssh-keys.
 
 ## Example `workflow.yml`:
 The step to sync data in your `.github/workflows/workflow.yml` could look like this:
@@ -38,7 +42,7 @@ The step to sync data in your `.github/workflows/workflow.yml` could look like t
 ### Authorization parameters
 **Either set `remote_passsword` OR `private_key`. If none or both are set, job will fail.**
 
-`remote_password` Password for the host system. Don't set if authorizing by ssh key
+`remote_password` Password for the host system. Don't set if authorizing by ssh-key
 
 `private_key` The matching private key to the public key on the host system. Don't set if authorizing by password. When set, must include the entire private key file - including begin-line and end-line
 
