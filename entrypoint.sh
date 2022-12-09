@@ -101,7 +101,7 @@ echo 'Installed ✅'
 echo ""
 
 # set if --delete switch is used
-if [ -z ${DELETE_FROM_REMOTE_DIRECTORY+.} ] || [ ${DELETE_FROM_REMOTE_DIRECTORY,,} != true ]; then
+if [ -z "$DELETE_FROM_REMOTE_DIRECTORY" ] || [ ${DELETE_FROM_REMOTE_DIRECTORY,,} != true ]; then
   echo "🗑  NOT using delete switch."
   echo ""
   DELETE_FLAG=
@@ -112,7 +112,7 @@ else
 fi
 
 # set if exclude file is used
-if [ -z ${EXCLUDE_FILE+.} ]; then
+if [ -z "$EXCLUDE_FILE" ]; then
   echo "⛔️ No exclude file"
   echo ""
   EXCLUDE_FILE=
