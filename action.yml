@@ -49,11 +49,11 @@ runs:
         echo "DELETE_FROM_REMOTE_DIRECTORY=${{ inputs.delete_from_remote_directory }}" >> $GITHUB_ENV
         echo "EXCLUDE_FILE=${{ inputs.exclude_file }}" >> $GITHUB_ENV
 
-        if [ ${{ inputs.remote_password }} != '' ]; then
+        if [[ ${{ inputs.remote_password }} != '' ]]; then
           echo "REMOTE_PASSWORD=${{ inputs.remote_password }}" >> $GITHUB_ENV
         fi
    
-        if [ ${{ inputs.private_key }} != '' ]; then
+        if [[ ${{ inputs.private_key }} != '' ]]; then
           echo "PRIVATE_KEY=${{ inputs.private_key }}" >> $GITHUB_ENV
         fi
 
