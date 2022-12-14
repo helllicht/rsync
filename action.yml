@@ -1,19 +1,19 @@
 name: 'helllicht/rsync'
 description: 'helllicht rsync action'
 inputs:
-  remote_server:  
+  remote_server:
     description: 'Host to deploy on'
     required: true
-  remote_port: 
+  remote_port:
     description: 'Port to use for connection'
     required: false
   remote_user:
     description: 'User to use for connection'
     required: true
-  local_directory: 
+  local_directory:
     description: 'Local directory to be synced'
     required: true
-  remote_directory: 
+  remote_directory:
     description: 'Target directory on the host system'
     required: true
   dry_run:
@@ -33,7 +33,7 @@ inputs:
     required: false
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Setting vars
       run: |
@@ -52,9 +52,11 @@ runs:
         if [ "${{ inputs.remote_password }}" != '' ]; then
           echo "REMOTE_PASSWORD=${{ inputs.remote_password }}" >> $GITHUB_ENV
         fi
-   
+
         if [ "${{ inputs.private_key }}" != '' ]; then
-          echo "PRIVATE_KEY=${{ inputs.private_key }}" >> $GITHUB_ENV
+          echo "PRIVATE_KEY<<EOF" >> $GITHUB_ENV
+          echo ${{ inputs.private_key }} >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
         fi
 
         echo "Done."
