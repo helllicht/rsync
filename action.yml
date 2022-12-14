@@ -56,6 +56,9 @@ runs:
         if [ "${{ inputs.private_key }}" != '' ]; then
           echo 'PRIVATE_KEY<<EOF' >> $GITHUB_ENV
           echo ${{ inputs.private_key }} >> $GITHUB_ENV
+          if       [ "$(tail -c1 "${{ inputs.private_key }}"; echo x)" != "$(printf '\nx')" ]
+            then     printf '\n' >> $GITHUB_ENV
+          fi
           echo 'EOF' >> $GITHUB_ENV
         fi
 
