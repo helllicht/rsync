@@ -42,9 +42,10 @@ The step to sync data in your `.github/workflows/workflow.yml` could look like t
 ### Authorization parameters
 **Either set `remote_password` OR `private_key`. If none or both are set, job will fail.**
 
-`remote_password` Password for the host system. Don't set if authorizing by ssh-key
-
-`private_key` Private key to an authorized public key on the host system. Don't set if authorizing by password. When set, must include the entire private key file - including begin-line and end-line
+| Parameter | Description
+| :--- | :--- |
+| `remote_password` | Password for the host system. Don't set if authorizing by ssh-key
+| `private_key` | Private key to an authorized public key on the host system. Don't set if authorizing by password. When set, must include the entire private key file - including begin-line and end-line
 
 ---
 
