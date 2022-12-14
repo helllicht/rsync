@@ -67,10 +67,10 @@ if [[ $AUTHORIZATION_METHOD = "PASSWORD" ]]; then
   SSH_KEY_SWITCH=
 else
   # create private key file
-   mkdir -p ~/.ssh
-   touch ~/.ssh/id_rsa
+  sudo mkdir -p ~/.ssh
+  sudo touch ~/.ssh/id_rsa
   echo "$PRIVATE_KEY" >~/.ssh/id_rsa
-   chmod 600 ~/.ssh/id_rsa
+  sudo chmod 600 ~/.ssh/id_rsa
 
   ADDITIONAL_PACKAGES=
   SSHPASS_COMMAND=
@@ -92,8 +92,8 @@ echo "Installing packages: rsync ssh $ADDITIONAL_PACKAGES ..."
 echo ""
 
 # install packages
- apt-get update
- apt-get install rsync ssh $ADDITIONAL_PACKAGES -y
+sudo apt-get update
+sudo apt-get install rsync ssh $ADDITIONAL_PACKAGES -y
 
 echo ""
 echo 'Installed ✅'
@@ -136,6 +136,6 @@ fi
 
 echo "Running rsync..."
 echo ""
- $SSHPASS_COMMAND rsync -avzr$DRY_SWITCH $DELETE_FLAG --exclude-from="$EXCLUDE_FILE" --rsh="ssh -o StrictHostKeyChecking=no $PORT_SWITCH" $LOCAL_DIRECTORY $REMOTE_USER@$REMOTE_SERVER:$REMOTE_DIRECTORY
+sudo $SSHPASS_COMMAND rsync -avzr$DRY_SWITCH $DELETE_FLAG --exclude-from="$EXCLUDE_FILE" --rsh="ssh -o StrictHostKeyChecking=no $PORT_SWITCH" $LOCAL_DIRECTORY $REMOTE_USER@$REMOTE_SERVER:$REMOTE_DIRECTORY
 echo ""
 echo "Done ✅"
