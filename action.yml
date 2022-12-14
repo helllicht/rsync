@@ -54,9 +54,9 @@ runs:
         fi
 
         if [ "${{ inputs.private_key }}" != '' ]; then
-          echo "PRIVATE_KEY<<EOF" >> $GITHUB_ENV
+          echo 'PRIVATE_KEY<<EOF' >> $GITHUB_ENV
           echo ${{ inputs.private_key }} >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
         fi
 
         echo "Done."
