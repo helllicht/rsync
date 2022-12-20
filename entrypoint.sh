@@ -31,22 +31,6 @@ if [[ -z ${REMOTE_USER+.} ]] || [[ -z ${REMOTE_SERVER+.} ]] || [[ -z ${LOCAL_DIR
   exit 1
 fi
 
-echo "FOUND:"
-echo ""
-echo "REMOTE_USER"
-echo $REMOTE_USER
-echo ""
-echo "REMOTE_SERVER"
-echo $REMOTE_SERVER
-echo ""
-echo "LOCAL_DIRECTORY"
-echo $LOCAL_DIRECTORY
-echo ""
-echo "REMOTE_DIRECTORY"
-echo $REMOTE_DIRECTORY
-echo ""
-echo ""
-
 # check if either password or key is set - exit if none or both
 if [ -n "${REMOTE_PASSWORD}" ] && [ -n "${PRIVATE_KEY}" ]; then
   echo "Found ssh_key and password."
