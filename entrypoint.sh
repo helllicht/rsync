@@ -4,17 +4,6 @@ echo ""
 echo "Running deployment..."
 echo ""
 
-REMOTE_USER=$INPUT_REMOTE_USER
-REMOTE_SERVER=$INPUT_REMOTE_SERVER
-REMOTE_PORT=$INPUT_REMOTE_PORT
-LOCAL_DIRECTORY=$INPUT_LOCAL_DIRECTORY
-REMOTE_DIRECTORY=$INPUT_REMOTE_DIRECTORY
-PRIVATE_KEY=$INPUT_PRIVATE_KEY
-REMOTE_PASSWORD=$INPUT_REMOTE_PASSWORD
-DRY_RUN=$INPUT_DRY_RUN
-EXCLUDE_FILE=$INPUT_EXCLUDE_FILE
-DELETE_FROM_REMOTE_DIRECTORY=$INPUT_DELETE_FROM_REMOTE_DIRECTORY
-
 # check if any required var is missed
 if [[ -z ${REMOTE_USER+.} ]] || [[ -z ${REMOTE_SERVER+.} ]] || [[ -z ${LOCAL_DIRECTORY+.} ]] || [[ -z ${REMOTE_DIRECTORY+.} ]]; then
   echo ""
@@ -47,11 +36,11 @@ if [[ -z ${REMOTE_PASSWORD+.} ]] && [[ -z ${PRIVATE_KEY+.} ]]; then
   echo "No password or ssh-key found."
   echo "Please set remote_password OR private_key."
   exit 1
-elif [[ ! -z ${REMOTE_PASSWORD} ]]; then
+elif [[ ! -z ${REMOTE_PASSWORD+.} ]]; then
   echo "🗝 Authorization via password"
   echo ""
   AUTHORIZATION_METHOD=PASSWORD
-elif [[ ! -z ${PRIVATE_KEY} ]]; then
+elif [[ ! -z ${PRIVATE_KEY+.} ]]; then
   echo "🔐 Authorization via ssh-key"
   echo ""
   AUTHORIZATION_METHOD=SSHKEY
@@ -78,10 +67,10 @@ if [[ $AUTHORIZATION_METHOD = "PASSWORD" ]]; then
   SSH_KEY_SWITCH=
 else
   # create private key file
-   mkdir -p ~/.ssh
-   touch ~/.ssh/id_rsa
+  sudo mkdir -p ~/.ssh
+  sudo touch ~/.ssh/id_rsa
   echo "$PRIVATE_KEY" >~/.ssh/id_rsa
-   chmod 600 ~/.ssh/id_rsa
+  sudo chmod 600 ~/.ssh/id_rsa
 
   ADDITIONAL_PACKAGES=
   SSHPASS_COMMAND=
@@ -103,8 +92,8 @@ echo "Installing packages: rsync ssh $ADDITIONAL_PACKAGES ..."
 echo ""
 
 # install packages
- apt-get update
- apt-get install rsync ssh $ADDITIONAL_PACKAGES -y
+sudo apt-get update
+sudo apt-get install rsync ssh $ADDITIONAL_PACKAGES -y
 
 echo ""
 echo 'Installed ✅'
@@ -147,6 +136,6 @@ fi
 
 echo "Running rsync..."
 echo ""
- $SSHPASS_COMMAND rsync -avzr$DRY_SWITCH $DELETE_FLAG --exclude-from="$EXCLUDE_FILE" --rsh="ssh -o StrictHostKeyChecking=no $PORT_SWITCH" $LOCAL_DIRECTORY $REMOTE_USER@$REMOTE_SERVER:$REMOTE_DIRECTORY
+sudo $SSHPASS_COMMAND rsync -avzr$DRY_SWITCH $DELETE_FLAG --exclude-from="$EXCLUDE_FILE" --rsh="ssh -o StrictHostKeyChecking=no $PORT_SWITCH" $LOCAL_DIRECTORY $REMOTE_USER@$REMOTE_SERVER:$REMOTE_DIRECTORY
 echo ""
 echo "Done ✅"

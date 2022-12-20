@@ -36,5 +36,17 @@ runs:
   using: 'composite'
   steps:
     - name: Deploy
+      env:
+        REMOTE_USER: ${{ input.REMOTE_USER }}
+        REMOTE_SERVER: ${{ input.REMOTE_SERVER }}
+        REMOTE_PORT: ${{ input.REMOTE_PORT }}
+        LOCAL_DIRECTORY: ${{ input.LOCAL_DIRECTORY }}
+        REMOTE_DIRECTORY: ${{ input.REMOTE_DIRECTORY }}
+        PRIVATE_KEY: ${{ input.PRIVATE_KEY }}
+        REMOTE_PASSWORD: ${{ input.REMOTE_PASSWORD }}
+        DRY_RUN: ${{ input.DRY_RUN }}
+        EXCLUDE_FILE: ${{ input.EXCLUDE_FILE }}
+        DELETE_FROM_REMOTE_DIRECTORY: ${{ input.DELETE_FROM_REMOTE_DIRECTORY }}
+
       run: ${{ github.action_path }}/entrypoint.sh
       shell: bash
