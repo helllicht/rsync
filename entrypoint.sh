@@ -35,16 +35,16 @@ fi
 echo "FOUND:"
 echo ""
 echo "REMOTE_USER"
-echo $INPUT_REMOTE_USER
+echo $REMOTE_USER
 echo ""
 echo "REMOTE_SERVER"
-echo $INPUT_REMOTE_SERVER
+echo $REMOTE_SERVER
 echo ""
 echo "LOCAL_DIRECTORY"
-echo $INPUT_LOCAL_DIRECTORY
+echo $LOCAL_DIRECTORY
 echo ""
 echo "REMOTE_DIRECTORY"
-echo $INPUT_REMOTE_DIRECTORY
+echo $REMOTE_DIRECTORY
 echo ""
 echo ""
 
