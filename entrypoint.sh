@@ -51,7 +51,7 @@ else
 fi
 
 # check if DRY_RUN is set
-if [[ -z "$DRY_RUN" ]]; then
+if [[ -z ${DRY_RUN+.} ]]; then
   echo ""
   echo "❌ ERROR:"
   echo "Missing required variable: dry_run"
