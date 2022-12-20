@@ -32,21 +32,21 @@ if [[ -z ${REMOTE_USER+.} ]] || [[ -z ${REMOTE_SERVER+.} ]] || [[ -z ${LOCAL_DIR
 fi
 
 # check if either password or key is set - exit if none or both
-if [[ -z ${REMOTE_PASSWORD+.} ]] && [[ -z ${PRIVATE_KEY+.} ]]; then
-  echo "No password or ssh-key found."
-  echo "Please set remote_password OR private_key."
+if [ -n ${REMOTE_PASSWORD} ] && [ -n ${PRIVATE_KEY} ]; then
+  echo "Found ssh_key and password."
+  echo "Please either set remote_password OR private_key."
   exit 1
-elif [[ ! -z ${REMOTE_PASSWORD} ]]; then
+elif [ -n ${REMOTE_PASSWORD} ]; then
   echo "🗝 Authorization via password"
   echo ""
   AUTHORIZATION_METHOD=PASSWORD
-elif [[ ! -z ${PRIVATE_KEY} ]]; then
+elif [ -n ${PRIVATE_KEY} ]; then
   echo "🔐 Authorization via ssh-key"
   echo ""
   AUTHORIZATION_METHOD=SSHKEY
 else
-  echo "Found ssh_key and password."
-  echo "Please either set remote_password OR private_key."
+  echo "No password or ssh-key found."
+  echo "Please set remote_password OR private_key."
   exit 1
 fi
 
