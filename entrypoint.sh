@@ -31,7 +31,6 @@ if [[ -z ${REMOTE_USER+.} ]] || [[ -z ${REMOTE_SERVER+.} ]] || [[ -z ${LOCAL_DIR
   exit 1
 fi
 
-
 echo "FOUND:"
 echo ""
 echo "REMOTE_USER"
@@ -81,7 +80,6 @@ if [[ $AUTHORIZATION_METHOD = "PASSWORD" ]]; then
 
   # add sshpass command to authorize by password
   SSHPASS_COMMAND="sshpass -p \"$REMOTE_PASSWORD\""
-  SSH_KEY_SWITCH=
 else
   # create private key file
   sudo mkdir -p ~/.ssh
@@ -153,6 +151,12 @@ fi
 
 echo "Running rsync..."
 echo ""
-sudo $SSHPASS_COMMAND rsync -avzr$DRY_SWITCH $DELETE_FLAG --exclude-from="$EXCLUDE_FILE" --rsh="ssh -o StrictHostKeyChecking=no $PORT_SWITCH" $LOCAL_DIRECTORY $REMOTE_USER@$REMOTE_SERVER:$REMOTE_DIRECTORY
+
+if [[ $AUTHORIZATION_METHOD = "PASSWORD" ]]; then
+  sudo sshpass -p "$REMOTE_PASSWORD" rsync -avzr$DRY_SWITCH $DELETE_FLAG --exclude-from="$EXCLUDE_FILE" --rsh="ssh -o StrictHostKeyChecking=no $PORT_SWITCH" $LOCAL_DIRECTORY $REMOTE_USER@$REMOTE_SERVER:$REMOTE_DIRECTORY
+else
+  sudo rsync -avzr$DRY_SWITCH $DELETE_FLAG --exclude-from="$EXCLUDE_FILE" --rsh="ssh -o StrictHostKeyChecking=no $PORT_SWITCH" $LOCAL_DIRECTORY $REMOTE_USER@$REMOTE_SERVER:$REMOTE_DIRECTORY
+fi
+
 echo ""
 echo "Done ✅"
