@@ -64,7 +64,7 @@ if [[ $AUTHORIZATION_METHOD = "PASSWORD" ]]; then
 else
   # create private key file
   sudo mkdir -p ~/.ssh
-  sudo echo "$PRIVATE_KEY" >>~/.ssh/id_rsa
+  echo "$PRIVATE_KEY" | sudo tee ~/.ssh/id_rsa
   sudo chmod 600 ~/.ssh/id_rsa
 
   ADDITIONAL_PACKAGES=
