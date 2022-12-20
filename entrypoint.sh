@@ -80,7 +80,7 @@ if [[ $AUTHORIZATION_METHOD = "PASSWORD" ]]; then
   ADDITIONAL_PACKAGES=sshpass
 
   # add sshpass command to authorize by password
-  SSHPASS_COMMAND="sshpass -p $REMOTE_PASSWORD"
+  SSHPASS_COMMAND="sshpass -p '$REMOTE_PASSWORD'"
   SSH_KEY_SWITCH=
 else
   # create private key file
