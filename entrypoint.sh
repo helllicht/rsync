@@ -36,11 +36,11 @@ if [[ -z ${REMOTE_PASSWORD+.} ]] && [[ -z ${PRIVATE_KEY+.} ]]; then
   echo "No password or ssh-key found."
   echo "Please set remote_password OR private_key."
   exit 1
-elif [[ ! -z ${REMOTE_PASSWORD+.} ]]; then
+elif [[ ! -z ${REMOTE_PASSWORD} ]]; then
   echo "🗝 Authorization via password"
   echo ""
   AUTHORIZATION_METHOD=PASSWORD
-elif [[ ! -z ${PRIVATE_KEY+.} ]]; then
+elif [[ ! -z ${PRIVATE_KEY} ]]; then
   echo "🔐 Authorization via ssh-key"
   echo ""
   AUTHORIZATION_METHOD=SSHKEY
