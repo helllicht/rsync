@@ -79,7 +79,9 @@ if [[ $AUTHORIZATION_METHOD = "PASSWORD" ]]; then
   ADDITIONAL_PACKAGES=sshpass
 
   # add sshpass command to authorize by password
-  SSHPASS_COMMAND='sshpass -p "' + $REMOTE_PASSWORD + '"'
+  SSHPASS_COMMAND='sshpass -p "'
+  SSHPASS_COMMAND+=$REMOTE_PASSWORD
+  SSHPASS_COMMAND+='"'
 else
   # create private key file
   sudo mkdir -p ~/.ssh
