@@ -37,16 +37,16 @@ runs:
   steps:
     - name: Deploy
       env:
-        REMOTE_USER: ${{ github.event.input.remote_user }}
-        REMOTE_SERVER: ${{ github.event.input.remote_server }}
-        REMOTE_PORT: ${{ github.event.input.remote_port }}
-        LOCAL_DIRECTORY: ${{ github.event.input.local_directory }}
-        REMOTE_DIRECTORY: ${{ github.event.input.remote_directory }}
-        PRIVATE_KEY: ${{ github.event.input.private_key }}
-        REMOTE_PASSWORD: ${{ github.event.input.remote_password }}
-        DRY_RUN: ${{ github.event.input.dry_run }}
-        EXCLUDE_FILE: ${{ github.event.input.exclude_file }}
-        DELETE_FROM_REMOTE_DIRECTORY: ${{ github.event.input.delete_from_remote_directory }}
+        REMOTE_USER: ${{ inputs.remote_user }}
+        REMOTE_SERVER: ${{ inputs.remote_server }}
+        REMOTE_PORT: ${{ inputs.remote_port }}
+        LOCAL_DIRECTORY: ${{ inputs.local_directory }}
+        REMOTE_DIRECTORY: ${{ inputs.remote_directory }}
+        PRIVATE_KEY: ${{ inputs.private_key }}
+        REMOTE_PASSWORD: ${{ inputs.remote_password }}
+        DRY_RUN: ${{ inputs.dry_run }}
+        EXCLUDE_FILE: ${{ inputs.exclude_file }}
+        DELETE_FROM_REMOTE_DIRECTORY: ${{ inputs.delete_from_remote_directory }}
 
       run: ${{ github.action_path }}/entrypoint.sh
       shell: bash
