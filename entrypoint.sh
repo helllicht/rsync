@@ -65,7 +65,7 @@ else
   # create private key file
   sudo mkdir -p ~/.ssh
   echo "$PRIVATE_KEY" | sudo tee ~/.ssh/id_rsa
-  sudo chmod 600 ~/.ssh/id_rsa
+  sudo chmod 604 ~/.ssh/id_rsa
 
   ADDITIONAL_PACKAGES=
 fi
