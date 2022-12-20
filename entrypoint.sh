@@ -77,11 +77,6 @@ fi
 if [[ $AUTHORIZATION_METHOD = "PASSWORD" ]]; then
   # add sshpass to package list, to install
   ADDITIONAL_PACKAGES=sshpass
-
-  # add sshpass command to authorize by password
-  SSHPASS_COMMAND='sshpass -p "'
-  SSHPASS_COMMAND+=$REMOTE_PASSWORD
-  SSHPASS_COMMAND+='"'
 else
   # create private key file
   sudo mkdir -p ~/.ssh
@@ -90,7 +85,6 @@ else
   sudo chmod 600 ~/.ssh/id_rsa
 
   ADDITIONAL_PACKAGES=
-  SSHPASS_COMMAND=
 fi
 
 # set if dry run or not
@@ -153,6 +147,11 @@ fi
 
 echo "Running rsync..."
 echo ""
-sudo $SSHPASS_COMMAND rsync -avzr$DRY_SWITCH $DELETE_FLAG --exclude-from="$EXCLUDE_FILE" --rsh="ssh -o StrictHostKeyChecking=no $PORT_SWITCH" $LOCAL_DIRECTORY $REMOTE_USER@$REMOTE_SERVER:$REMOTE_DIRECTORY
+
+if [[ $AUTHORIZATION_METHOD = "PASSWORD" ]]; then
+  sudo sshpass -p "$REMOTE_PASSWORD" rsync -avzr$DRY_SWITCH $DELETE_FLAG --exclude-from="$EXCLUDE_FILE" --rsh="ssh -o StrictHostKeyChecking=no $PORT_SWITCH" $LOCAL_DIRECTORY $REMOTE_USER@$REMOTE_SERVER:$REMOTE_DIRECTORY
+else
+  sudo rsync -avzr$DRY_SWITCH $DELETE_FLAG --exclude-from="$EXCLUDE_FILE" --rsh="ssh -o StrictHostKeyChecking=no $PORT_SWITCH" $LOCAL_DIRECTORY $REMOTE_USER@$REMOTE_SERVER:$REMOTE_DIRECTORY
+fi
 echo ""
 echo "Done ✅"
