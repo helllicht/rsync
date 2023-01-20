@@ -1,8 +1,8 @@
 # helllicht/rsync
 
 ## Introduction
-This action uses rsync to deploy code on a remote system via ssh. 
-Authorization can be done via password or ssh-key
+This action uses rsync to deploy code to a remote system via ssh. 
+Authorization can be done via password or ssh-key.
 
 ## Requirements
 The host system needs to allow ssh connections and support rsync.
@@ -15,12 +15,12 @@ The step to sync data in your `.github/workflows/workflow.yml` could look like t
 - name: Run rsync
   uses: helllicht/rsync@v1
   with:
-    remote_server: ${{ secrets.REMOTE_SERVER }}
-    remote_user: ${{ secrets.REMOTE_USER }}
+    remote_server: ${{ secrets.HELLLICHT_IO_SERVER_HOST }}
+    remote_user: ${{ secrets.HELLLICHT_IO_SERVER_USER }}
     local_directory: ./
     remote_directory: ./example-directory/
     dry_run: false
-    remote_password: ${{ secrets.REMOTE_PASSWORD }}
+    private_key: ${{ secrets.HELLLICHT_IO_PRIVATE_KEY }}
     exclude_file: .syncignore
     remote_port: "22"
     delete_from_remote_directory: false
